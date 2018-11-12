@@ -16,6 +16,10 @@ extern NSString * _Nonnull const RNBranchLinkOpenedNotificationLinkPropertiesKey
 @property (class, readonly, nonnull) Branch *branch;
 
 + (void)initSessionWithLaunchOptions:(NSDictionary * _Nullable)launchOptions isReferrable:(BOOL)isReferrable;
+/*
+For Bunch, the deeplink param is not a critical dependency, but missing any critical deeplink info would create a critical bug. When posting multiple notifications, some key notifications may be suppressed by the react native framework. To fix the issue, we will simply ignore empty messages.
+*/
++ (BOOL)shouldIgnoreResult:(NSDictionary *)result;
 + (BOOL)handleDeepLink:(NSURL * _Nonnull)url __deprecated_msg("Please use [RNBranch.branch application:openURL:options] or [RNBranch.branch application:openURL:sourceApplication:annotation:] instead.");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpartial-availability"

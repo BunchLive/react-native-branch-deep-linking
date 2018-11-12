@@ -72,6 +72,9 @@ RCT_EXPORT_MODULE();
 # pragma mark - Private
 
 + (void)postNotificationName:(NSString *)name withPayload:(NSDictionary<NSString *, id> *)payload {
+    if ([RNBranch shouldIgnoreResult:payload]) {
+      return;
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:name
                                                         object:self
                                                       userInfo:payload];

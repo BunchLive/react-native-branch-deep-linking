@@ -178,9 +178,19 @@ RCT_EXPORT_MODULE();
                 result[RNBranchLinkOpenedNotificationUriKey] = [NSURL URLWithString:params[@"+non_branch_link"]];
             }
         }
-
+        if ([RNBranch shouldIgnoreResult:result]) {
+          return;
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:RNBranchLinkOpenedNotification object:nil userInfo:result];
     }];
+}
+
++ (BOOL)shouldIgnoreResult:(NSDictionary *)result {
+  NSDictionary *resultParams = result[@"params"];
+  if (resultParams[@"+clicked_branch_link"] && resultParams[@"+is_first_session"] && resultParams.count == 2) {
+    return YES;
+  }
+  return NO;
 }
 
 // TODO: Eliminate these now that sourceUrl is gone.
