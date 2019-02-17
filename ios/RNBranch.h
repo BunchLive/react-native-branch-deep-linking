@@ -28,6 +28,7 @@ For Bunch, the deeplink param is not a critical dependency, but missing any crit
 
 // Must be called before any other static method below
 + (void)useTestInstance;
++ (void)deferInitializationForJSLoad;
 
 + (void)setDebug;
 + (void)delayInitToCheckForSearchAds;
