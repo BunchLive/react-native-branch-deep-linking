@@ -193,13 +193,9 @@ RCT_EXPORT_MODULE();
                 result[RNBranchLinkOpenedNotificationUriKey] = [NSURL URLWithString:params[@"+non_branch_link"]];
             }
         }
-<<<<<<< HEAD
         if ([RNBranch shouldIgnoreResult:result]) {
           return;
         }
-=======
-        
->>>>>>> upstream/master
         [[NSNotificationCenter defaultCenter] postNotificationName:RNBranchLinkOpenedNotification object:nil userInfo:result];
     }];
 }
